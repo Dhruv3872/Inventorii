@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventorii", "Inventorii\Inventorii.csproj", "{878BFD37-2CF6-4D0E-A09A-4632E19340D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{878BFD37-2CF6-4D0E-A09A-4632E19340D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878BFD37-2CF6-4D0E-A09A-4632E19340D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878BFD37-2CF6-4D0E-A09A-4632E19340D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878BFD37-2CF6-4D0E-A09A-4632E19340D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {023AE636-4B7A-4645-B665-C9829059B3DF}
+	EndGlobalSection
+EndGlobal
