@@ -20,11 +20,45 @@ namespace Inventorii.Controllers
         }
 
         // GET: Items
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, string filter)
         {
-              return _context.Items != null ? 
-                          View(await _context.Items.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Items'  is null.");
+            var items = from Item in _context.Items select Item;
+
+            if (!String.IsNullOrEmpty(search)){
+                items = items.Where(s => s.ItemName.Contains(search));
+            }
+
+            ViewData["ItemName"] = String.IsNullOrEmpty(filter) ? "NameDesc" : "";
+            ViewData["Quantity"] = filter == "QtyAsc" ? "QtyDesc" : "QtyAsc";
+            ViewData["MinimumStock"] = filter == "StockAsc" ? "StockDesc" : "StockAsc";
+
+            switch (filter)
+            {
+                case "NameDesc":
+                    items = items.OrderByDescending(i => i.ItemName);
+                    break;
+                case "QtyDesc":
+                    items = items.OrderByDescending(i => i.Quantity);
+                    break;
+                case "QtyAsc":
+                    items = items.OrderBy(i => i.Quantity);
+                    break;
+                case "StockDesc":
+                    items = items.OrderByDescending(i => i.MinimumStockQty);
+                    break;
+                case "StockAsc":
+                    items = items.OrderBy(i => i.MinimumStockQty);
+                    break;
+                default:
+                    items = items.OrderBy(i => i.ItemName);
+                    break;
+            }
+
+            return View(await items.ToListAsync());
+
+            //return _context.Items != null ? 
+            //              View(await _context.Items.ToListAsync()) :
+            //              Problem("Entity set 'ApplicationDbContext.Items'  is null.");
         }
 
         // GET: Items/Details/5
