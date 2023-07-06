@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Inventorii.Models;
 
 namespace Inventorii.Data
 {
@@ -9,5 +10,7 @@ namespace Inventorii.Data
             : base(options)
         {
         }
+
+        public DbSet<Item> Items { get; set; } = null!;
     }
 }
