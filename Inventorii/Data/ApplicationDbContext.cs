@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Inventorii.Models;
 
 namespace Inventorii.Data
 {
@@ -9,6 +10,7 @@ namespace Inventorii.Data
             : base(options)
         {
         }
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
@@ -29,5 +31,9 @@ namespace Inventorii.Data
 
         }
 >>>>>>> Stashed changes
+=======
+
+        public DbSet<Item> Items { get; set; } = null!;
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
     }
 }

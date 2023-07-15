@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Inventorii.Data;
 using Inventorii.Models;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authorization;
 using ClosedXML.Excel;
 using System.Data;
 using System.Reflection;
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
 
 namespace Inventorii.Controllers
 {
@@ -23,7 +26,10 @@ namespace Inventorii.Controllers
             _context = context;
         }
 
+<<<<<<< HEAD
         [Authorize]
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
         // GET: Items
         public async Task<IActionResult> Index(string search, string filter)
         {
@@ -97,19 +103,25 @@ namespace Inventorii.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ItemName,Quantity,MinimumStockQty")] Item item)
         {
+<<<<<<< HEAD
             if (item.Quantity < 0) ModelState.AddModelError("", "Quantity should be greater or equal to 0.");
 
             if (item.MinimumStockQty < 0) ModelState.AddModelError("", "Minimum Stock Quantity should be greater or equal to 0.");
 
             if (item.Quantity < item.MinimumStockQty) ModelState.AddModelError("", "Quantity should be greater or equal to Minimum Stock Quantity.");
 
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             if (ModelState.IsValid)
             {
                 _context.Add(item);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             return View(item);
         }
 
@@ -136,12 +148,15 @@ namespace Inventorii.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ItemName,Quantity,MinimumStockQty")] Item item)
         {
+<<<<<<< HEAD
             if (item.Quantity < 0) ModelState.AddModelError("", "Quantity should be greater or equal to 0.");
 
             if (item.MinimumStockQty < 0) ModelState.AddModelError("", "Minimum Stock Quantity should be greater or equal to 0.");
 
             if (item.Quantity < item.MinimumStockQty) ModelState.AddModelError("", "Quantity should be greater or equal to Minimum Stock Quantity.");
 
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             if (id != item.Id)
             {
                 return NotFound();
@@ -167,7 +182,10 @@ namespace Inventorii.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             return View(item);
         }
 
@@ -210,6 +228,7 @@ namespace Inventorii.Controllers
 
         private bool ItemExists(int id)
         {
+<<<<<<< HEAD
             return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
@@ -264,6 +283,9 @@ namespace Inventorii.Controllers
 
             return dt;
 
+=======
+          return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
         }
     }
 }

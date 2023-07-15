@@ -14,16 +14,26 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+<<<<<<< HEAD
 using Inventorii.Data;
+=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
 
 namespace Inventorii.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+=======
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<LoginModel> _logger;
+
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -104,7 +114,11 @@ namespace Inventorii.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+<<<<<<< HEAD
             returnUrl ??= Url.Content("~/Items");
+=======
+            returnUrl ??= Url.Content("~/");
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -129,7 +143,11 @@ namespace Inventorii.Areas.Identity.Pages.Account
                 }
                 else
                 {
+<<<<<<< HEAD
                     ModelState.AddModelError(string.Empty, "Invalid username or password.");
+=======
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
                     return Page();
                 }
             }
