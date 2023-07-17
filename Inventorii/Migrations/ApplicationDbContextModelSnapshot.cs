@@ -17,20 +17,20 @@ namespace Inventorii.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
-<<<<<<< Updated upstream:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
+/*<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
+//<<<<<<< Updated upstream:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-=======
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
+//=======
+//=======
+//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs */
                 .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
+/*<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
             modelBuilder.Entity("Inventorii.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -106,8 +106,8 @@ namespace Inventorii.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
+//=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs */
             modelBuilder.Entity("Inventorii.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -130,10 +130,10 @@ namespace Inventorii.Migrations
 
                     b.ToTable("Items");
                 });
-<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> Stashed changes:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
+//<<<<<<< HEAD:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
+//>>>>>>> Stashed changes:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
+/*=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs */
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -187,7 +187,7 @@ namespace Inventorii.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-<<<<<<< Updated upstream:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
+//<<<<<<< Updated upstream:Inventorii/Data/Migrations/ApplicationDbContextModelSnapshot.cs
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
@@ -253,8 +253,8 @@ namespace Inventorii.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-=======
->>>>>>> Stashed changes:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
+//=======
+//>>>>>>> Stashed changes:Inventorii/Migrations/ApplicationDbContextModelSnapshot.cs
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")

@@ -10,12 +10,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-=======
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+//=======
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 //builder.Services.AddControllersWithViews();

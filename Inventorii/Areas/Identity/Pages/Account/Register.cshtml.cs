@@ -10,10 +10,10 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 using Inventorii.Data;
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+/*=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -27,30 +27,30 @@ namespace Inventorii.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-<<<<<<< HEAD
+//<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
-=======
+/*=======
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-<<<<<<< HEAD
+//<<<<<<< HEAD
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
-=======
+/*=======
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -87,7 +87,7 @@ namespace Inventorii.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-<<<<<<< HEAD
+//<<<<<<< HEAD
             [Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
@@ -96,8 +96,8 @@ namespace Inventorii.Areas.Identity.Pages.Account
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+/*=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -141,11 +141,11 @@ namespace Inventorii.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-<<<<<<< HEAD
+//<<<<<<< HEAD
                 user.firstName = Input.FirstName;
                 user.lastName = Input.LastName;
-=======
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+/*=======
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -187,7 +187,7 @@ namespace Inventorii.Areas.Identity.Pages.Account
             return Page();
         }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
         private ApplicationUser CreateUser()
         {
             try
@@ -198,7 +198,7 @@ namespace Inventorii.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
                     $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-=======
+/*=======
         private IdentityUser CreateUser()
         {
             try
@@ -209,26 +209,26 @@ namespace Inventorii.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
                     $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
         private IUserEmailStore<ApplicationUser> GetEmailStore()
-=======
+/*=======
         private IUserEmailStore<IdentityUser> GetEmailStore()
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-<<<<<<< HEAD
+//<<<<<<< HEAD
             return (IUserEmailStore<ApplicationUser>)_userStore;
-=======
+/*=======
             return (IUserEmailStore<IdentityUser>)_userStore;
->>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 */
         }
     }
 }
