@@ -1,5 +1,8 @@
 ﻿@model Inventorii.Models.Item
-
+@using Inventorii.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager // Necessary to access user email.
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,6 +30,11 @@
                 <label asp-for="MinimumStockQty" class="control-label"></label>
                 <input asp-for="MinimumStockQty" class="form-control" />
                 <span asp-validation-for="MinimumStockQty" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="UserEmail" class="control-label" ></label>
+                <input asp-for="UserEmail" class="form-control" value="@UserManager.GetUserAsync(User).Result.Email"/>
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

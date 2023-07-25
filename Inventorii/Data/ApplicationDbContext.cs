@@ -10,9 +10,7 @@ namespace Inventorii.Data
             : base(options)
         {
         }
-//<<<<<<< HEAD
-//<<<<<<< Updated upstream
-//=======
+
 
         public DbSet<Item> Items { get; set; } = null!;
 
@@ -30,10 +28,6 @@ namespace Inventorii.Data
                 .HasMaxLength(250);
 
         }
-//>>>>>>> Stashed changes
-//=======
 
-        //public DbSet<Item> Items { get; set; } = null!;
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
     }
 }

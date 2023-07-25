@@ -7,35 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Inventorii.Data;
 using Inventorii.Models;
-//<<<<<<< HEAD
+
 using Microsoft.AspNetCore.Authorization;
 using ClosedXML.Excel;
 using System.Data;
 using System.Reflection;
-//=======
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+using Microsoft.AspNetCore.Identity;
 
 namespace Inventorii.Controllers
 {
     public class ItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ItemsController(ApplicationDbContext context)
+        public ItemsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        //<<<<<<< HEAD
-
-        //=======
-        //>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
         // GET: Items
         [Authorize]
         public async Task<IActionResult> Index(string search, string filter)
         {
             var items = from Item in _context.Items select Item;
-
+            //TempData["email"] = _userManager.GetUserAsync(User).Result.Email;
+            items = items.Where(s => s.UserEmail.Equals(_userManager.GetUserAsync(User).Result.Email));
             if (!String.IsNullOrEmpty(search)){
                 items = items.Where(s => s.ItemName.Contains(search));
             }
@@ -102,33 +100,29 @@ namespace Inventorii.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ItemName,Quantity,MinimumStockQty")] Item item)
+        public async Task<IActionResult> Create([Bind("Id,ItemName,Quantity,MinimumStockQty,UserEmail")] Item item)
         {
-//<<<<<<< HEAD
             if (item.Quantity < 0) ModelState.AddModelError("", "Quantity should be greater or equal to 0.");
 
             if (item.MinimumStockQty < 0) ModelState.AddModelError("", "Minimum Stock Quantity should be greater or equal to 0.");
 
             if (item.Quantity < item.MinimumStockQty) ModelState.AddModelError("", "Quantity should be greater or equal to Minimum Stock Quantity.");
 
-//=======
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+
             if (ModelState.IsValid)
             {
                 _context.Add(item);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-//<<<<<<< HEAD
 
-//=======
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             return View(item);
         }
 
         // GET: Items/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //TempData["here"] = "nothing here";
             if (id == null || _context.Items == null)
             {
                 return NotFound();
@@ -147,17 +141,15 @@ namespace Inventorii.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ItemName,Quantity,MinimumStockQty")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ItemName,Quantity,MinimumStockQty,UserEmail")] Item item)
         {
-//<<<<<<< HEAD
+            
             if (item.Quantity < 0) ModelState.AddModelError("", "Quantity should be greater or equal to 0.");
 
             if (item.MinimumStockQty < 0) ModelState.AddModelError("", "Minimum Stock Quantity should be greater or equal to 0.");
 
-            if (item.Quantity < item.MinimumStockQty) ModelState.AddModelError("", "Quantity should be greater or equal to Minimum Stock Quantity.");
+            //if (item.Quantity < item.MinimumStockQty) ModelState.AddModelError("", "Quantity should be greater or equal to Minimum Stock Quantity.");
 
-//=======
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
             if (id != item.Id)
             {
                 return NotFound();
@@ -165,6 +157,7 @@ namespace Inventorii.Controllers
 
             if (ModelState.IsValid)
             {
+                //return NotFound();/*
                 try
                 {
                     _context.Update(item);
@@ -183,10 +176,7 @@ namespace Inventorii.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-//<<<<<<< HEAD
-
-//=======
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
+            //TempData["here"] = "model state doesn't seem to be valid.";
             return View(item);
         }
 
@@ -229,7 +219,6 @@ namespace Inventorii.Controllers
 
         private bool ItemExists(int id)
         {
-//<<<<<<< HEAD
             return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
@@ -237,7 +226,10 @@ namespace Inventorii.Controllers
         {
             try
             {
-                var data = _context.Items.ToList();
+                var data = _context.Items.Where(d => d
+                .UserEmail.Equals(_userManager.GetUserAsync(User).Result.Email))
+                    .Select(table => new {table.ItemName, table.Quantity, table.MinimumStockQty})
+                    .ToList();
                 if (data != null & data.Count > 0)
                 {
                     using(XLWorkbook wb = new XLWorkbook())
@@ -283,10 +275,6 @@ namespace Inventorii.Controllers
             }
 
             return dt;
-
-//=======
-          //return (_context.Items?.Any(e => e.Id == id)).GetValueOrDefault();
-//>>>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681
         }
     }
 }

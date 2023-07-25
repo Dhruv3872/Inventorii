@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<Inventorii.Models.Item>
-
+@using Inventorii.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager // Necessary to access user email.
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!--<p>@TempData["email"]</p>-->
 <h1>Items List</h1>
 
 <p>
@@ -14,7 +17,6 @@
 <form asp-controller="Items" asp-action="Index">
     <p>
         Find by Name <input type="text" name="search" class="form-text" />
-        <!---<<<<<<< HEAD->
         <input type="submit" value="Search" class="btn btn-sm btn-danger" />
         <a class="btn btn-sm btn-primary m-2" asp-action="ExportToExcel" asp-controller="Items">Download as Excel</a>
     </p>
@@ -52,7 +54,15 @@ else {
         </thead>
         <tbody>
     @foreach (var item in Model) {
-            <tr>
+            var colour = "";
+            if(item.Quantity < item.MinimumStockQty){
+                colour = "red";
+            }
+            else{
+                colour = "None";
+            }
+                <tr style="color:@colour">
+                    
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
                 </td>
@@ -71,58 +81,3 @@ else {
     }
         </tbody>
     </table>
-}
-<!--=======-->
-<!--        <input type="submit" value="Search" class="btn btn-danger" />
-    </p>
-        </form>-->
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Index" asp-route-filter="@ViewData["ItemName"]">
-                    @*@Html.DisplayNameFor(model => model.ItemName)*@
-                    Item Name
-                    <i class="bi @(ViewData["ItemName"] == "NameDesc" ? "bi-caret-up-fill" : "bi-caret-down-fill")"></i>
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-filter="@ViewData["Quantity"]">
-                    @Html.DisplayNameFor(model => model.Quantity)
-                    <i class="bi @(ViewData["Quantity"] == "QtyDesc" ? "bi-caret-up-fill" : "bi-caret-down-fill")"></i>
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-filter="@ViewData["MinimumStock"]">
-                    @*@Html.DisplayNameFor(model => model.MinimumStockQty)*@
-                    Minimum Stock
-                    <i class="bi @(ViewData["MinimumStock"] == "StockDesc" ? "bi-caret-up-fill" : "bi-caret-down-fill")"></i>
-                </a>
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MinimumStockQty)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-        <!-- >>>>>> 1f6b739a5a80686a831b40a0b34d225be83fc681 -->
