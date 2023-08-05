@@ -32,9 +32,13 @@ namespace Inventorii.Controllers
         public async Task<IActionResult> Index(string search, string filter)
         {
             var items = from Item in _context.Items select Item;
+            TempData["search"] = ""; /* This variable will be used to show searched string
+            in the 'search field' after the page is loaded on pressing enter key or
+            'search' button.*/
             //TempData["email"] = _userManager.GetUserAsync(User).Result.Email;
             items = items.Where(s => s.UserEmail.Equals(_userManager.GetUserAsync(User).Result.Email));
             if (!String.IsNullOrEmpty(search)){
+                TempData["search"] = search;
                 items = items.Where(s => s.ItemName.Contains(search));
             }
 

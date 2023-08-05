@@ -16,8 +16,12 @@
 
 <form asp-controller="Items" asp-action="Index">
     <p>
-        Find by Name <input type="text" name="search" class="form-text" />
+        Find by Name <input type="text" name="search" class="form-text" value="@TempData["search"]"/>
         <input type="submit" value="Search" class="btn btn-sm btn-danger" />
+        <a class="btn btn-sm btn-primary m-2" asp-action="Index"
+        asp-controller="Items">Clear</a>
+        <!--The 'Clear' link when clicked will result in the execution of the 'index' method
+            of the 'Items' controller with null search string.-->
         <a class="btn btn-sm btn-primary m-2" asp-action="ExportToExcel" asp-controller="Items">Download as Excel</a>
     </p>
 </form>
